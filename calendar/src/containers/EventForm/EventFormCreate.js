@@ -6,13 +6,12 @@ import { hideEventForm } from "../../redux/actions/eventForm"
 import { Input, Button } from 'antd';
 
 const EventFormCreate = ({ info = {}, date, addEvent, updateEvent, hideEventForm }) => {
-
+    
     const { TextArea } = Input;
-
 
     const { id = 0, name: defaultName = "", participants: defaultParticipants = "", description: defaultDescription = "" } = info;
 
-
+    const [choseDate, setDate]=useState(new Date())
     const [name, setName] = useState(defaultName);
     const [participants, setParticipants] = useState(defaultParticipants);
     const [description, setDescription] = useState(defaultDescription);
@@ -20,9 +19,18 @@ const EventFormCreate = ({ info = {}, date, addEvent, updateEvent, hideEventForm
 
 
     const handleSave = () => {
-        (id) ?
-            updateEvent(id, date, name, participants, description) :
-            addEvent(date, name, participants, description)
+        
+            if(date){
+                (id) ?
+                updateEvent(id, date, name, participants, description) :
+                addEvent(date, name, participants, description)
+            }
+            else{
+                (id) ?
+                updateEvent(id, choseDate, name, participants, description) :
+                addEvent(choseDate, name, participants, description)
+            }
+            
 
         hideEventForm();
     }
@@ -35,6 +43,10 @@ const EventFormCreate = ({ info = {}, date, addEvent, updateEvent, hideEventForm
                 placeholder="Event name"
                 value={name}
                 onChange={(e) => (setName(e.target.value))}
+            />
+            <Input 
+            type='date'
+            onChange={(e)=>(setDate(new Date(e.target.value)))}
             />
             <Input
                 placeholder="Names of participants"

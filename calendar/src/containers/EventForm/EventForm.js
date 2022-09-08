@@ -24,7 +24,7 @@ function EventForm({ eventForm, hideEventForm }) {
                     className="event-form_close-button"
                     onClick={hideEventForm} />
                 {(target.isEdit) ?
-                     <EventFormCreate info={target.info} date = {target.date}  /> :
+                     <EventFormCreate info={target.info} date = {target.date} /> :
                      <EventFormRead info={target.info}  />
                 }
 

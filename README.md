@@ -1,4 +1,4 @@
 # calendar
 genesis tech task
 
-link https://gen-calendar-326c7.web.app/
+link https://calendar-for-genesis.web.app/
